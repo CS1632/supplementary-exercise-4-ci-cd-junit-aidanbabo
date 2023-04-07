@@ -18,7 +18,14 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO
+		for(Cat c:cats){
+			if(c.getId()==id&&c.getRented()) {
+				c.returnCat();
+				return true;
+				
+				
+		}
+	}
 		return false;
 	}
 
@@ -33,14 +40,18 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean rentCat(int id) {
-		// TODO
-		return false;
+		Cat c = getCat(id);
+		if (c == null || c.getRented())
+			return false;
+		c.rentCat();
+		return true;
 	}
 
 	/**
 	 * Create a String list from the list of cats using the .toString() method of
 	 * each NON-RENTED Cat object in the list. That is, it should only add cats who
-	 * are available to be rented. These cats should be separated by "\n" characters
+	 * are i
+	 * ailable to be rented. These cats should be separated by "\n" characters
 	 * (line feeds). Example: ID 1. Jennyanydots ID 2. Old Deuteronomy ID 3.
 	 * Mistoffelees
 	 * 
@@ -48,8 +59,12 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public String listCats() {
-		// TODO
-		return "WRITE CODE FOR THIS";
+		StringBuilder a = new StringBuilder();
+		for(Cat c : cats){
+			if (!c.getRented()) 
+				a.append(c.toString() + "\n");
+		}
+		return a.toString();
 	}
 
 	/**
@@ -62,7 +77,7 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean catExists(int id) {
-		// TODO
+		if(getCat(id)!=null) return true;
 		return false;
 	}
 

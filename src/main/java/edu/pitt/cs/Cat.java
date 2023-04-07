@@ -102,6 +102,7 @@ public class Cat {
 		if (bugInjectionOn) {
 			throw new UnsupportedOperationException("Injected bug for getRented()");
 		}
+		
 		return rented;
 	}
 
